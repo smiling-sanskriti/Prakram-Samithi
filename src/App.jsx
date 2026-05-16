@@ -111,7 +111,22 @@ export default function App() {
       phone: data.get("phone") || ""
     };
 
-    const apiBaseUrl = import.meta.env.VITE_API_URL || "http://localhost:5001";
+    const getApiUrl = () => {
+      // Use explicit env var if set
+      if (import.meta.env.VITE_API_URL) {
+        return import.meta.env.VITE_API_URL;
+      }
+      
+      // Auto-detect for production Vercel deployment
+      if (typeof window !== 'undefined' && window.location.hostname.includes('vercel.app')) {
+        return window.location.origin;
+      }
+      
+      // Default to localhost for development
+      return "http://localhost:5001";
+    };
+
+    const apiBaseUrl = getApiUrl();
 
     try {
       setFormMessage("Submitting registration...");

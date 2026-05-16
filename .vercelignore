@@ -1,0 +1,14 @@
+.git
+.gitignore
+.venv
+venv
+.DS_Store
+OLD
+*.py[cod]
+__pycache__
+.vscode
+.env
+.env.local
+*.log
+node_modules/.vite
+node_modules/.bin
